@@ -1,29 +1,31 @@
 <template>
-  <div>
-    <HeaderItem />
-    <div
-      class="m-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4"
-    >
+  <div class="flex justify-center bg-gray-200">
+    <div class="max-w-screen-lg flex flex-col min-h-screen w-full">
+      <NavBar />
       <div
-        v-for="prod in products"
-        :key="prod.id"
-        class="border rounded-lg bg-gray-100 hover:shadow-lg"
+        class="m-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4"
       >
-        <nuxt-link :to="`/products/${prod.id}`">
-          <div class="rounded-t-lg bg-white pt-2 pb-2">
-            <img class="crop mx-auto" :src="prod.image" />
-          </div>
-          <div class="pl-4 pr-4 pb-4 pt-4 rounded-lg">
-            <h4
-              class="mt-1 font-semibold text-base leading-tight truncate text-gray-700"
-            >
-              {{ prod.attributes.title }}
-            </h4>
-            <div class="mt-1 text-sm text-gray-700">
-              {{ prod.attributes.description }}
+        <div
+          v-for="prod in products"
+          :key="prod.id"
+          class="border rounded-lg bg-gray-100 hover:shadow-lg"
+        >
+          <nuxt-link :to="`/products/${prod.id}`">
+            <div class="rounded-t-lg bg-white pt-2 pb-2">
+              <img class="crop mx-auto" :src="prod.image" />
             </div>
-          </div>
-        </nuxt-link>
+            <div class="pl-4 pr-4 pb-4 pt-4 rounded-lg">
+              <h4
+                class="mt-1 font-semibold text-base leading-tight truncate text-gray-700"
+              >
+                {{ prod.attributes.title }}
+              </h4>
+              <div class="mt-1 text-sm text-gray-700">
+                {{ prod.attributes.description }}
+              </div>
+            </div>
+          </nuxt-link>
+        </div>
       </div>
     </div>
   </div>

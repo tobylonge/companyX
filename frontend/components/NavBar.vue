@@ -10,12 +10,14 @@
     <div class="flex">
       <ul v-if="username" class="flex items-center justify-between">
         <li class="mx-6">
-          <button class="flex items-center">
-            <img src="~/assets/cart.svg" height="35" width="35" />
-            <span v-if="numberOfItems" class="text-sm"
-              >{{ numberOfItems }} Item(s)</span
-            >
-          </button>
+          <nuxt-link to="/cart">
+            <div class="flex items-center">
+              <img src="~/assets/cart.svg" height="35" width="35" />
+              <span v-if="numberOfItems" class="text-sm"
+                >{{ numberOfItems }} Item(s)</span
+              >
+            </div>
+          </nuxt-link>
         </li>
         <li class="flex items-center">
           <img
@@ -32,9 +34,9 @@
           </div>
         </li>
       </ul>
-      <ul v-else class="uk-navbar-nav">
-        <li><NuxtLink to="/auth/login">Log In</NuxtLink></li>
-        <li><NuxtLink to="/auth/register">Register</NuxtLink></li>
+      <ul v-else class="flex items-center justify-between opacity-80">
+        <li class="mx-4"><NuxtLink to="/login">Log In</NuxtLink></li>
+        <li><NuxtLink to="/register">Register</NuxtLink></li>
       </ul>
     </div>
   </nav>

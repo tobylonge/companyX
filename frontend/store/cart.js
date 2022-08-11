@@ -26,7 +26,7 @@ export const mutations = {
       data.quantity++
     }
 
-    console.log('data ', state.items)
+    console.log('data ', JSON.stringify(state.items))
 
     Cookies.set('cartItems', JSON.stringify(state.items))
   },

@@ -8,10 +8,10 @@
         <nuxt-link
           v-for="category in categories"
           :key="category.id"
-          :to="`/categories/${category.slug}`"
-          class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 ml-2 border border-gray-400 rounded shadow"
+          :to="`/categories/${category.id}`"
+          class="bg-white hover:bg-gray-100 text-gray-600 text-sm py-2 px-4 ml-2 border border-gray-400 rounded shadow"
         >
-          {{ category.name }}
+          {{ category?.attributes?.label }}
         </nuxt-link>
       </div>
     </div>
@@ -28,10 +28,10 @@ export default {
   },
   async mounted() {
     try {
-      // this.categories = await this.$strapi.find('categories')
-      this.categories = await this.$http.$get(
-        'http://localhost:1337/api/categories'
+      const categories = await this.$http.$get(
+        `${process.env.strapiAPI}categories`
       )
+      this.categories = categories.data
     } catch (error) {
       this.error = error
     }

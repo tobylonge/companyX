@@ -32,6 +32,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://pwa.nuxtjs.org/
+    '@nuxtjs/pwa',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -50,5 +52,20 @@ export default {
   http: {
     baseURL: process.env.STRAPI_API || 'http://localhost:1337/api/',
     browserBaseURL: process.env.STRAPI_API || 'http://localhost:1337/api/',
+  },
+
+  // pwa config
+  pwa: {
+    workbox: {
+      /* workbox options */
+      runtimeCaching: [
+        {
+          urlPattern: 'https://res.cloudinary.com/.*',
+          handler: 'cacheFirst',
+          method: 'GET',
+          strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+        },
+      ],
+    },
   },
 }

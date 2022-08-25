@@ -110,7 +110,7 @@ export default {
           .map((el) => el.id + ':' + el.quantity)
           .toString()
         // console.log('Cart Items ', cartItems, offlineCart)
-        window.open(`sms://+13013294373?body=${offlineCart}`)
+        window.open(`sms://+13013294373?body=I want to by ${offlineCart}`)
         // window.open(`sms://+13013294373?body=342:5,678:2`)
       }
     },

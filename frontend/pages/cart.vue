@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center bg-gray-200">
+  <div class="flex justify-center bg-gray-200 p-4">
     <div class="max-w-screen-lg flex flex-col min-h-screen w-full">
       <div class="flex w-full items-center mt-6 mb-10">
         <div class="flex items-center">
@@ -27,21 +27,21 @@
         <div
           v-for="item in cartItems"
           :key="item.id"
-          class="w-full bg-white rounded-lg flex items-center p-4 mb-6"
+          class="w-full bg-white rounded-lg flex items-center p-4 mb-6 flex-col sm:flex-row"
         >
-          <div class="w-1/6">
+          <div class="w-1/2 sm:w-1/6">
             <img
               class="w-full"
               :src="item?.attributes.image?.data?.attributes?.url"
             />
           </div>
-          <div class="w-4/6 ml-2 mr-4">
+          <div class="w-3/4 sm:w-4/6 ml-2 mr-4">
             <h2>{{ item?.attributes?.title }}</h2>
             <p class="mt-1 text-gray-600 truncate text-xs font-light">
               {{ item?.attributes?.description }}
             </p>
           </div>
-          <div class="w-1/6">
+          <div class="w-1/2 sm:w-1/6 mt-4">
             <p class="text-xs font-thin mb-1">Quantity</p>
             <div class="quantity">
               <button class="quantity__button" @click="removeFromCart(item)">
@@ -75,7 +75,7 @@
             </div>
           </div>
           <div
-            class="w-1/6 flex flex-col items-end justify-between self-stretch"
+            class="sm:w-1/6 flex sm:flex-col items-end justify-between self-stretch"
           >
             <div>
               <button class="button__icon" @click="removeFromCart(item)">

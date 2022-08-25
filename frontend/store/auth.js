@@ -6,7 +6,6 @@ export const state = () => ({
 
 export const mutations = {
   setUser(state, user) {
-    console.log('user ', user)
     state.user = user
     Cookies.set('user', JSON.stringify(user))
   },

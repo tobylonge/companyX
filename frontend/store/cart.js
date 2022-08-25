@@ -26,8 +26,6 @@ export const mutations = {
       data.quantity++
     }
 
-    console.log('data ', JSON.stringify(state.items))
-
     Cookies.set('cartItems', JSON.stringify(state.items))
   },
   remove(state, item) {
@@ -53,17 +51,14 @@ export const getters = {
     return state.items
   },
   price: (state) => {
-    console.log('price ', state.items)
     const totalPrice = state.items.reduce(
       (accumulator, item) =>
         accumulator + item?.attributes.price * item.quantity,
       0
     )
-    console.log('totalPrice ', totalPrice)
     return totalPrice
   },
   numberOfItems: (state) => {
-    console.log('state ', state.items)
     return state.items.reduce(
       (accumulator, item) => accumulator + item.quantity,
       0

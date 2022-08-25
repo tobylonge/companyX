@@ -70,6 +70,7 @@ export default {
       success: null,
       err: null,
       address: '',
+      online: navigator.onLine,
     }
   },
   computed: {
@@ -81,26 +82,36 @@ export default {
   },
   methods: {
     async placeOrder() {
-      const address = this.address
-      const userId = this.user
-      const token = this.token
-      this.$http.setToken(token, 'Bearer')
-      try {
-        await this.$http.$post('orders', {
-          data: {
-            address,
-            total: this.$store.getters['cart/price'],
-            users_permissions_user: userId,
-            products: this.$store.getters['cart/items'],
-            token,
-          },
-        })
-        // this.emptyCart()
-        this.success = {
-          message: 'Order placed successfully',
+      if (this.online) {
+        const address = this.address
+        const userId = this.user
+        const token = this.token
+        this.$http.setToken(token, 'Bearer')
+        try {
+          await this.$http.$post('orders', {
+            data: {
+              address,
+              total: this.$store.getters['cart/price'],
+              users_permissions_user: userId,
+              products: this.$store.getters['cart/items'],
+              token,
+            },
+          })
+          // this.emptyCart()
+          this.success = {
+            message: 'Order placed successfully',
+          }
+        } catch (err) {
+          this.err = err.response?.data?.error
         }
-      } catch (err) {
-        this.err = err.response?.data?.error
+      } else {
+        const cartItems = this.$store.getters['cart/items']
+        const offlineCart = cartItems
+          .map((el) => el.id + ':' + el.quantity)
+          .toString()
+        // console.log('Cart Items ', cartItems, offlineCart)
+        window.open(`sms://+13013294373?body=${offlineCart}`)
+        // window.open(`sms://+13013294373?body=342:5,678:2`)
       }
     },
     ...mapMutations({

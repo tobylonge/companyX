@@ -65,6 +65,12 @@ export default {
           method: 'GET',
           strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
         },
+        {
+          urlPattern: 'https://desolate-taiga-65056.herokuapp.com/.*',
+          handler: 'networkFirst',
+          method: 'GET',
+          strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+        },
       ],
     },
   },
